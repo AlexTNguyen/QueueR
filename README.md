@@ -3,7 +3,7 @@
 <b>Briefly explain the need for the app (the "what")</b> <br>
 There are two applications that we are currently considering: (1) a queueing system for restaurants and  (2) a calorie counter for the dining halls. 
 
-(1) This application is a queueing/waitlist + reservation + ordering system for restaurants. During busy hours, such as lunch or dinner time, it gets hectic in restaurants. People may be waiting in the restaurant while not being approached by the host for a while. A solution to this is to allow the  customers to do this themselves. Customers could scan a QR code and list the number of people in their party to automatically add themselves on the waitlist. While they are waiting, they could also look at the menu and order their food. When they have time, the restaurant could use their interface to notify their customers about the wait time. We could also implement a direct paying system so that customers don’t have to wait for the waiters to come pick up their credit cards. 
+(1) This application is a queueing/waitlist + reservation + ordering system for restaurants. During busy hours, such as lunch or dinner time, it gets hectic in restaurants. People may be waiting in the restaurant while not being approached by the host for a while. A solution to this is to allow the  customers to do this themselves. Customers could scan a QR code and list the number of people in their party to automatically add themselves on the waitlist. While they are waiting, they could also look at the menu and order their food. When they have time, the restaurant could use their interface to notify their customers about the wait time. 
 
 (2) This application is a calorie counter for Tufts dining halls. When going to the dining halls, it is difficult to track the calories and nutrients of each food, especially during peak hours when you feel rushed to get your food to get the line moving. This app tries to solve this problem by using the camera to quickly scan QR code on the labels of each respective food to obtain and quickly tabulate the calories and nutrients of your meal. 
 
@@ -26,7 +26,7 @@ There are two applications that we are currently considering: (1) a queueing sys
 (2) Scanning QR codes, calculate calories. 
 
 <b>List and briefly describe the secondary functionality of the app, the functions and transactions of the app that are nice to have only if time allows.</b><br>
-(1) Money transaction API
+(1) Money transaction API, so people can order and pay for their food while waiting, and the chefs can get a headstart.
 
 (2) Recommend food based on user profile and goals. 
 
@@ -42,7 +42,7 @@ There are two applications that we are currently considering: (1) a queueing sys
 
 
 <b>Briefly describe how your team plans to market or advertise the app.</b><br>
-(1) We could manually notify restaurant owners and try to convince them to use the app. We could also try to find a popular newsletter for restaurant owners or food lovers and try to advertise it there. 
+(1) We could manually notify restaurant owners and try to convince them to try the app. We could also try to find a popular newsletter for restaurant owners or food lovers and try to advertise it there. 
 
-(2)This app would be advertised through the dining halls, flyers throughout campus, or school newsletters. 
+(2) This app would be advertised through the dining halls, flyers throughout campus, or school newsletters. 
 
