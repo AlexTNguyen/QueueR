@@ -13,8 +13,12 @@ There are two applications that we are currently considering: (1) a queueing sys
 (2) The customers of this app are primarily Tufts students and faculties. The stakeholders are Tufts dining halls and cafe. 
 
 <b>Using wireframes, sketch the most important views of the app.</b><br>
+(1) <img src="pics/queue.png">
+
+(2) <img src="pics/calorie.png">
 
 <b>Diagram or sketch the architecture of the platform. The platform is what that powers the app. It is very difficult to build an app without any dependencies. </b><br>
+<img src="pics/diagram.png">
 
 <b>List and briefly describe the core functionality of the app, the most important functions and transactions of the app.</b><br>
 (1) The core functionalities are scanning QR codes, reservation and queue databases. 
