@@ -21,6 +21,10 @@ public class CustomerAdapter extends BaseAdapter {
         this.list = list;
     }
 
+    public void insert (Customer customer) {
+        list.add(customer);
+    }
+
     @Override
     public int getCount() {
         return list.size();

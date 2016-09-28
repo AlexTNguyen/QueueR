@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CustomerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +30,15 @@ public class MainActivity extends AppCompatActivity {
         columnHeader3.setText("Wait Time");
 
         ListView view = (ListView) findViewById(R.id.listview);
-        final List<Customer> list = Customer.makeData();
-        CustomerAdapter adapter = new CustomerAdapter(this, list);
+        List<Customer> list = Customer.makeData();
+        adapter = new CustomerAdapter(this, list);
 
         view.setAdapter(adapter);
+    }
+
+    public void addEntry(View view) {
+        adapter.insert(new Customer("Alex", Integer.toString(2), "7:00 PM"));
+        ListView listView = (ListView) findViewById(R.id.listview);
+        listView.setAdapter(adapter);
     }
 }

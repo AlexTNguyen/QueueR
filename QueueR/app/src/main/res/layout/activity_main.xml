@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:weightSum="1">
 
     <!-- Third header line and column headings -->
     <LinearLayout
@@ -35,5 +35,13 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:text="Add Entry"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="addEntry"/>
 </LinearLayout>
