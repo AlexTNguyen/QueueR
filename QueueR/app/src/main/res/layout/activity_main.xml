@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -43,5 +44,5 @@
         android:text="Add Entry"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
-        android:onClick="addEntry"/>
+        android:onClick="showPopup"/>
 </LinearLayout>
