@@ -24,6 +24,10 @@ public class CustomerAdapter extends BaseAdapter {
     public void insert (Customer customer) {
         list.add(customer);
     }
+    public void insert_at (Customer customer, int id) {
+        list.remove(id);
+        list.add(id, customer);
+    }
 
     @Override
     public int getCount() {

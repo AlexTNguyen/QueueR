@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,12 +22,14 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.view.Menu;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
     private CustomerAdapter adapter;
     private View popupView;
     private PopupWindow popupWindow;
+    int temp_pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new CustomerAdapter(this, list);
 
         view.setAdapter(adapter);
+        view.setOnItemClickListener(onListClick);
     }
 
     public void addEntry(View view) {
@@ -65,8 +69,39 @@ public class MainActivity extends AppCompatActivity {
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup,
                 (ViewGroup) findViewById(R.id.popup));
-        popupWindow = new PopupWindow(popupView, 300, 400, true);
+        popupWindow = new PopupWindow(popupView, 600, 800, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        Log.v("pls", "workkkk");
+        // Log.v("pls", "work");
     }
+
+    public void editEntry(View view) {
+        // edit the list content
+        EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
+        EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
+        EditText time   = (EditText)popupView.findViewById(R.id.timeEntry);
+        adapter.insert_at(new Customer(name.getText().toString(),
+                size.getText().toString(),
+                time.getText().toString()), temp_pos);
+        ListView listView = (ListView) findViewById(R.id.listview);
+        listView.setAdapter(adapter);
+        popupWindow.dismiss();
+    }
+
+    public void editPopup(View view) {
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+                .getSystemService(LAYOUT_INFLATER_SERVICE);
+        popupView = layoutInflater.inflate(R.layout.popup_edit,
+                (ViewGroup) findViewById(R.id.popup_edit));
+        popupWindow = new PopupWindow(popupView, 600, 800, true);
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+    }
+
+    private AdapterView.OnItemClickListener onListClick=new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            editPopup(view);
+            temp_pos = position;
+            System.out.println("id is");
+            System.out.println(position);
+        }
+    };
 }
