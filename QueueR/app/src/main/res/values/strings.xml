@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QueueR</string>
+    <string name="title_activity_entry_list">EntryList</string>
 </resources>
