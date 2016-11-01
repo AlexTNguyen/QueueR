@@ -3,7 +3,8 @@ package com.alextommy.queuer;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.title);
-
     }
 
     public void showList(View view) {
