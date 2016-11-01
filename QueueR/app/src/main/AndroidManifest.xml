@@ -21,6 +21,10 @@
             android:name=".EntryList"
             android:label="@string/title_activity_entry_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="78911b446326e9287be9b6b69d7a8aa8fbe08dc7" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
