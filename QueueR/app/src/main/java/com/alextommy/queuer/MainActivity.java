@@ -4,29 +4,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 
-
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.alextommy.queuer.R.id;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.view.Menu;
 import android.content.Intent;
 import com.google.zxing.Result;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -76,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("pls", "work")
     }
 
-    public void showPopup() {
+    private void showPopup() {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup,
@@ -103,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onPause() {
         super.onPause();
-        if(on != false) {
+        if(on) {
             mScannerView.stopCamera(); // Stop camera on pause
             setContentView(R.layout.title);
         }
@@ -114,7 +98,5 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     public void handleResult(Result rawResult) {
         showPopup();
     }
-
-
 
 }

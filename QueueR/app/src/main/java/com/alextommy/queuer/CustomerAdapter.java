@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class CustomerAdapter extends BaseAdapter {
-    private Activity activity;
-    private List<Customer> list;
+    private final Activity activity;
+    private final List<Customer> list;
 
 
     public CustomerAdapter(Activity activity, List<Customer> list) {

@@ -10,31 +10,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name"
+        android:text="@string/header_name"
         android:id="@+id/nameLabel" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:id="@+id/nameEntry" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Party Size"
+        android:text="@string/header_party_size"
         android:id="@+id/sizeLabel" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:id="@+id/sEntry" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Wait Time"
+        android:text="@string/header_wait_time"
         android:id="@+id/timeLabel" />
 
     <EditText
@@ -47,7 +49,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add"
+        android:text="@string/add"
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal"
         android:onClick="addEntry"/>
