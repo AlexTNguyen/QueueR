@@ -5,13 +5,6 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.alextommy.queuer.R.id;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -84,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         on = true;
         mScannerView.startCamera(); // Start camera
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                showPopup();
-//            }
-//        }, 3000);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showPopup();
+            }
+        }, 3000);
     }
 
     @Override

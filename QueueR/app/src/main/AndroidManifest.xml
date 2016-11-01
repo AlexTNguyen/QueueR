@@ -3,10 +3,10 @@
     package="com.alextommy.queuer">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -21,11 +21,10 @@
         <activity
             android:name=".EntryList"
             android:label="@string/title_activity_entry_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="78911b446326e9287be9b6b69d7a8aa8fbe08dc7" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Customer {
 
-    private String name;
-    private String size;
-    private String time;
+    private final String name;
+    private final String size;
+    private final String time;
 
     public Customer(String name, String size, String time) {
         super();

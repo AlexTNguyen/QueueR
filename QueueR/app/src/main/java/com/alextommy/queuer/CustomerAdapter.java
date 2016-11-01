@@ -50,7 +50,7 @@ public class CustomerAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = activity.getLayoutInflater();
-            convertView = inflater.inflate(R.layout.listrow, null);
+            convertView = inflater.inflate(R.layout.listrow, parent, false);
         }
         TextView col1 = (TextView) convertView.findViewById(R.id.column1);
         TextView col2 = (TextView) convertView.findViewById(R.id.column2);

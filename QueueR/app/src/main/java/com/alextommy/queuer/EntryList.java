@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class EntryList extends AppCompatActivity {
 
-    private CustomerAdapter adapter = new CustomerAdapter(this, Customer.makeData());
+    private final CustomerAdapter adapter = new CustomerAdapter(this, Customer.makeData());
     private View popupView;
     private PopupWindow popupWindow;
     private int temp_pos;
@@ -74,18 +74,14 @@ public class EntryList extends AppCompatActivity {
         // Log.v("pls", "work")
     }
 
-    public CustomerAdapter getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(CustomerAdapter newAdapter){
-        adapter = newAdapter;
-    }
-//    public static void addEntryHelper (String name, String size, String time) {
-//        CustomerAdapter newAdapter = getAdapter();
-//        adapter.insert(new Customer(name, size, time));
-//        listView.setAdapter(adapter);
+//    public CustomerAdapter getAdapter() {
+//        return adapter;
 //    }
+//
+//    public void setAdapter(CustomerAdapter newAdapter){
+//        adapter = newAdapter;
+//    }
+
 
     public void editEntry(View view) {
         // edit the list content
