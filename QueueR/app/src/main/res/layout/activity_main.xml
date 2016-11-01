@@ -35,13 +35,13 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="58dp"
-        android:text="Add Entry"
+        android:text="@string/add_entry"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:onClick="showPopup"/>

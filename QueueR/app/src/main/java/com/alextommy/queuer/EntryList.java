@@ -2,10 +2,7 @@ package com.alextommy.queuer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +13,13 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import java.util.List;
 
 public class EntryList extends AppCompatActivity {
 
     private CustomerAdapter adapter = new CustomerAdapter(this, Customer.makeData());
     private View popupView;
     private PopupWindow popupWindow;
-    private static ListView listView;
-    int temp_pos;
+    private int temp_pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +37,14 @@ public class EntryList extends AppCompatActivity {
         TextView columnHeader1 = (TextView) findViewById(R.id.column_header1);
         TextView columnHeader2 = (TextView) findViewById(R.id.column_header2);
         TextView columnHeader3 = (TextView) findViewById(R.id.column_header3);
+        String name = "Name";
+        String partySize = "Party Size";
+        String waitTime = "Wait Time";
+        columnHeader1.setText(name);
+        columnHeader2.setText(partySize);
+        columnHeader3.setText(waitTime);
 
-        columnHeader1.setText("Name");
-        columnHeader2.setText("Party Size");
-        columnHeader3.setText("Wait Time");
-
-        listView = (ListView) findViewById(R.id.listview);
+        ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onListClick);
     }
@@ -103,7 +100,7 @@ public class EntryList extends AppCompatActivity {
         popupWindow.dismiss();
     }
 
-    public void editPopup(View view) {
+    private void editPopup(View view) {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup_edit,
@@ -112,7 +109,7 @@ public class EntryList extends AppCompatActivity {
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
     }
 
-    private AdapterView.OnItemClickListener onListClick=new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener onListClick=new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             editPopup(view);
             temp_pos = position;
