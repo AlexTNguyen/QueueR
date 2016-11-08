@@ -45,4 +45,12 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:onClick="showPopup"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:text="Create QR Code"
+        android:id="@+id/new_qr"
+        android:layout_gravity="center_horizontal"
+        android:onClick="generateQR"/>
 </LinearLayout>

@@ -49,8 +49,10 @@ public class EntryList extends AppCompatActivity {
         listView.setOnItemClickListener(onListClick);
     }
 
-
-
+    public void generateQR(View view) {
+        Intent i = new Intent(this, GeneratorActivity.class);
+        startActivity(i);
+    }
 
     public void addEntry(View view) {
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
@@ -83,8 +85,8 @@ public class EntryList extends AppCompatActivity {
 //    }
 
 
+    // edit the list content
     public void editEntry(View view) {
-        // edit the list content
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
         EditText time   = (EditText)popupView.findViewById(R.id.timeEntry);
@@ -96,6 +98,7 @@ public class EntryList extends AppCompatActivity {
         popupWindow.dismiss();
     }
 
+    // pop up window after clicking on list
     private void editPopup(View view) {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -109,9 +112,8 @@ public class EntryList extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             editPopup(view);
             temp_pos = position;
-            System.out.println("id is");
-            System.out.println(position);
+//            System.out.println("id is");
+//            System.out.println(position);
         }
     };
-
 }
