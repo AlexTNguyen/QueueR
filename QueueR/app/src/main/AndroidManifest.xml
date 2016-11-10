@@ -21,10 +21,13 @@
         <activity
             android:name=".EntryList"
             android:label="@string/title_activity_entry_list"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="78911b446326e9287be9b6b69d7a8aa8fbe08dc7" />
+
+        <activity android:name=".GeneratorActivity"></activity>
     </application>
 
 </manifest>

@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
             public void run() {
                 showPopup();
             }
-        }, 3000);
+        }, 500);
     }
 
     @Override
