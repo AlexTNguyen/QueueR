@@ -8,14 +8,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/header_name"
-        android:layout_weight="1"
+        android:paddingLeft="20dp"
+        android:layout_weight="0.71"
         />
 
     <TextView android:id="@+id/column2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/header_party_size"
-        android:layout_weight="1"
+        android:layout_weight="0.30"
         />
 
     <TextView android:id="@+id/column3"

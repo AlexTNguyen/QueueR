@@ -1,19 +1,34 @@
 package com.alextommy.queuer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Customer {
 
-    private final String name;
-    private final String size;
-    private final String time;
+    public String name;
+    public int size;
+    public Date checkin;
+    public Date estimate;
+    public int status;
 
-    public Customer(String name, String size, String time) {
-        super();
+    public Customer(){
+    }
+
+    public Customer(String name, int size) {
         this.name = name;
         this.size = size;
-        this.time = time;
+        checkin = new Date();
+        estimate = null;
+        status = 0;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -21,21 +36,28 @@ public class Customer {
     }
 
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
 
-    public String getTime() {
-        return time;
+    public Date getDate() {
+        return checkin;
     }
 
-    public static List<Customer> makeData() {
-        List<Customer> list = new ArrayList<>();
-        list.add(new Customer("Alex", Integer.toString(2), "7:00 PM"));
-        list.add(new Customer("Tommy", Integer.toString(4), "8:00 PM"));
-        list.add(new Customer("Ming", Integer.toString(3), "9:00 PM"));
-        return list;
+    public void setName(String name) {
+        this.name = name;
     }
+
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+
+    public void setDate(Date date) {
+        this.checkin = date;
+    }
+
 
 }

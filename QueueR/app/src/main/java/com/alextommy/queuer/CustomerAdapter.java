@@ -1,6 +1,9 @@
 package com.alextommy.queuer;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.graphics.Color;
 
 public class CustomerAdapter extends BaseAdapter {
     private final Activity activity;
@@ -56,9 +60,18 @@ public class CustomerAdapter extends BaseAdapter {
         TextView col2 = (TextView) convertView.findViewById(R.id.column2);
         TextView col3 = (TextView) convertView.findViewById(R.id.column3);
 
+        if(list.get(position).getStatus() == 0) {
+            col1.setBackgroundColor(Color.parseColor("#ffcccc"));
+            col2.setBackgroundColor(Color.parseColor("#ffcccc"));
+            col3.setBackgroundColor(Color.parseColor("#ffcccc"));
+        }
+
+
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+        String date = format.format(list.get(position).getDate());
         col1.setText(list.get(position).getName());
-        col2.setText(list.get(position).getSize());
-        col3.setText(list.get(position).getTime());
+        col2.setText(Integer.toString(list.get(position).getSize()));
+        col3.setText(date);
 
         return convertView;
     }

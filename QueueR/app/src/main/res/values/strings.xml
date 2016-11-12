@@ -9,4 +9,9 @@
     <string name="restaurant">RESTAURANT</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
+    <string-array name="status_array">
+        <item>Waiting</item>
+        <item>Seated</item>
+        <item>Finished</item>
+    </string-array>
 </resources>

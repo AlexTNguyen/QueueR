@@ -16,19 +16,26 @@
         <TextView android:id="@+id/column_header1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"
+            android:layout_weight="0.71"
+            android:background="#25A7E3"
             />
         <!--  Column 2 header -->
         <TextView android:id="@+id/column_header2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_weight="0.30"
+            android:background="#25A7E3"
             />
 
         <TextView android:id="@+id/column_header3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_weight="1"
+            android:background="#25A7E3"
             />
     </LinearLayout>
 
