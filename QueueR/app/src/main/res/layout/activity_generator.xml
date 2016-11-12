@@ -10,41 +10,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.alextommy.queuer.GeneratorActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="QR Code Generator"/>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:hint="Enter Text to generate"
+        android:hint="Enter Text to generate QR code"
         android:id="@+id/qr_text"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:text="Generate"
+        android:text="Generate QR code"
         android:id="@+id/gen_btn"/>
-    
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:background="@android:color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp">
-        android;layout_below="@+id/view">
+        android:layout_height="400dp"
+        android:id="@+id/linearLayout">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="175dp"
+            android:layout_height="275dp"
+            android:layout_marginTop="125dp"
             android:id="@+id/image"/>
     </LinearLayout>
-    
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty Text"
+        android:id="@+id/imageText"
+        android:layout_above="@+id/save_btn"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save QR code"
+        android:id="@+id/save_btn"
+        android:onClick="popup_confirm"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
