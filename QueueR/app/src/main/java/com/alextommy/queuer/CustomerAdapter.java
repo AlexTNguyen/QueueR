@@ -3,6 +3,8 @@ package com.alextommy.queuer;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +33,29 @@ public class CustomerAdapter extends BaseAdapter {
     public void insert_at (Customer customer, int id) {
         list.remove(id);
         list.add(id, customer);
+    }
+
+    public void sort () {
+        sortByDate();
+        Collections.sort(list, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer one, Customer two) {
+                if (one.getStatus() > two.getStatus())
+                    return 1;
+                if (one.getStatus() < two.getStatus())
+                    return -1;
+                return 0;
+            }
+        });
+    }
+
+    private void sortByDate () {
+        Collections.sort(list, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer one, Customer two) {
+                return one.getDate().compareTo(two.getDate());
+            }
+        });
     }
 
     @Override
@@ -65,9 +90,19 @@ public class CustomerAdapter extends BaseAdapter {
             col2.setBackgroundColor(Color.parseColor("#ffcccc"));
             col3.setBackgroundColor(Color.parseColor("#ffcccc"));
         }
+        else if(list.get(position).getStatus() == 1) {
+            col1.setBackgroundColor(Color.parseColor("#ccffcc"));
+            col2.setBackgroundColor(Color.parseColor("#ccffcc"));
+            col3.setBackgroundColor(Color.parseColor("#ccffcc"));
+        }
+        else if(list.get(position).getStatus() == 2) {
+            col1.setBackgroundColor(Color.parseColor("#f2f2f2"));
+            col2.setBackgroundColor(Color.parseColor("#f2f2f2"));
+            col3.setBackgroundColor(Color.parseColor("#f2f2f2"));
+        }
 
 
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm a, MMM dd");
         String date = format.format(list.get(position).getDate());
         col1.setText(list.get(position).getName());
         col2.setText(Integer.toString(list.get(position).getSize()));

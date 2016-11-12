@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".EntryList"
-            android:icon="@drawable/title"
+            android:logo="@drawable/title"
             android:theme="@style/AppTheme" />
 
         <meta-data

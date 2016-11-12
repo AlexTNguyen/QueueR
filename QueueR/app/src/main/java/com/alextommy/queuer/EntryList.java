@@ -32,24 +32,31 @@ public class EntryList extends AppCompatActivity {
     private Customer current;
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Dewick").child("Entries");
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
+        listView = (ListView) findViewById(R.id.listview);
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                Log.v("IM", "IN");
                 for (DataSnapshot child : snapshot.getChildren()) {
+                    Log.v("IM", "IN");
                     Customer entry = child.getValue(Customer.class);
                     adapter.insert(entry);
                     keys.add(child.getKey());
                 }
+                adapter.sort();
+                listView.setAdapter(adapter);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.v("IT", "BROKE");
             }
         });
 
@@ -69,8 +76,7 @@ public class EntryList extends AppCompatActivity {
         columnHeader2.setText(partySize);
         columnHeader3.setText(checkin);
 
-        ListView listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
         listView.setOnItemClickListener(onListClick);
     }
 
@@ -86,6 +92,7 @@ public class EntryList extends AppCompatActivity {
         mDatabase.push().setValue(newEntry);
         adapter.insert(newEntry);
         ListView listView = (ListView) findViewById(R.id.listview);
+        adapter.sort();
         listView.setAdapter(adapter);
         Log.v("hi", "hi");
         popupWindow.dismiss();
@@ -106,12 +113,16 @@ public class EntryList extends AppCompatActivity {
     public void editEntry(View view) {
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
+        Spinner spinner = (Spinner)popupView.findViewById(R.id.spinner);
+        int status = spinner.getSelectedItemPosition();
         Customer newCustomer = (Customer) adapter.getItem(temp_pos);
         newCustomer.setName(name.getText().toString());
         newCustomer.setSize(Integer.parseInt(size.getText().toString()));
+        newCustomer.setStatus(status);
         adapter.insert_at(newCustomer, temp_pos);
         mDatabase.child(currentKey).setValue(newCustomer);
         ListView listView = (ListView) findViewById(R.id.listview);
+        adapter.sort();
         listView.setAdapter(adapter);
         popupWindow.dismiss();
     }
@@ -127,7 +138,10 @@ public class EntryList extends AppCompatActivity {
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
         name.setText(current.getName());
         size.setText(Integer.toString(current.getSize()));
-        //Spinner spinner = (Spinner)popupView.findViewById(R.id.spinner);
+        Spinner spinner = (Spinner)popupView.findViewById(R.id.spinner);
+        int statusID = current.getStatus();
+        Log.v("status", Integer.toString(statusID));
+        spinner.setSelection(statusID);
         popupWindow = new PopupWindow(popupView, 300, 400, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
     }
