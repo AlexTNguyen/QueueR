@@ -82,7 +82,6 @@ public class EntryList extends AppCompatActivity {
     public void addEntry(View view) {
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
-        EditText time   = (EditText)popupView.findViewById(R.id.timeEntry);
         Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
         mDatabase.push().setValue(newEntry);
         adapter.insert(newEntry);
@@ -107,7 +106,6 @@ public class EntryList extends AppCompatActivity {
     public void editEntry(View view) {
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
-        EditText time   = (EditText)popupView.findViewById(R.id.timeEntry);
         Customer newCustomer = (Customer) adapter.getItem(temp_pos);
         newCustomer.setName(name.getText().toString());
         newCustomer.setSize(Integer.parseInt(size.getText().toString()));

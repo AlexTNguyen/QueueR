@@ -54,12 +54,10 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView.stopCamera();
         String name   = ((EditText)popupView.findViewById(R.id.nameEntry)).getText().toString();
         String size   = ((EditText)popupView.findViewById(R.id.sEntry)).getText().toString();
-        String time   = ((EditText)popupView.findViewById(R.id.timeEntry)).getText().toString();
         Intent intent = new Intent(this, EntryList.class);
         intent.putExtra("add", "true");
         intent.putExtra("name", name);
         intent.putExtra("size", size);
-        intent.putExtra("time", time);
         popupWindow.dismiss();
         startActivity(intent);
     }
