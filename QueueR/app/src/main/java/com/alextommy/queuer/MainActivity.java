@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private View popupView;
     private PopupWindow popupWindow;
     private boolean on = false;
-    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +63,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     public void showPopup(View view) {
-        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
-                .getSystemService(LAYOUT_INFLATER_SERVICE);
-        popupView = layoutInflater.inflate(R.layout.popup,
-                (ViewGroup) findViewById(R.id.popup));
-        popupWindow = new PopupWindow(popupView, 600, 800, true);
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        // Log.v("pls", "work")
-    }
-
-    private void showPopup() {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup,
