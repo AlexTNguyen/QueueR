@@ -86,7 +86,7 @@ public class GeneratorActivity extends AppCompatActivity {
                     .getSystemService(LAYOUT_INFLATER_SERVICE);
             popupView = layoutInflater.inflate(R.layout.popup_qr,
                     (ViewGroup) findViewById(R.id.popup_qr));
-            popupWindow = new PopupWindow(popupView, 600, 800, true);
+            popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
             popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
         }
     }

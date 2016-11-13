@@ -103,7 +103,7 @@ public class EntryList extends AppCompatActivity {
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup,
                 (ViewGroup) findViewById(R.id.popup));
-        popupWindow = new PopupWindow(popupView, 600, 800, true);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
     }
 
@@ -128,7 +128,7 @@ public class EntryList extends AppCompatActivity {
     }
 
     // pop up window after clicking on list
-    private void editPopup(View view) {
+    private void editPopup() {
         //name.setText();
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -142,7 +142,7 @@ public class EntryList extends AppCompatActivity {
         int statusID = current.getStatus();
         Log.v("status", Integer.toString(statusID));
         spinner.setSelection(statusID);
-        popupWindow = new PopupWindow(popupView, 300, 400, true);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
     }
 
@@ -151,7 +151,7 @@ public class EntryList extends AppCompatActivity {
             temp_pos = position;
             current = (Customer)adapter.getItem(position);
             currentKey = keys.get(position);
-            editPopup(view);
+            editPopup();
         }
     };
 }

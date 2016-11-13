@@ -2,6 +2,7 @@ package com.alextommy.queuer;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
@@ -13,6 +14,7 @@ import io.fabric.sdk.android.Fabric;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +49,9 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         Intent intent = new Intent(this, EntryList.class);
         intent.putExtra("add", "false");
         startActivity(intent);
-
     }
 
     public void addEntry(View view) {
-        mScannerView.stopCamera();
         String name   = ((EditText)popupView.findViewById(R.id.nameEntry)).getText().toString();
         String size   = ((EditText)popupView.findViewById(R.id.sEntry)).getText().toString();
         Intent intent = new Intent(this, EntryList.class);
@@ -85,13 +85,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                     new String[]{Manifest.permission.CAMERA},
                     MY_PERMISSIONS_REQUEST_CAMERA);
         }
-
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                showPopup();
-//            }
-//        }, 500);
     }
 
     @Override
@@ -132,5 +125,15 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 //        Toast.makeText(this, "Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_SHORT).show();
 //        mScannerView.resumeCameraPreview(this);
         setContentView(R.layout.title);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            mScannerView.stopCamera();
+            setContentView(R.layout.title);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
