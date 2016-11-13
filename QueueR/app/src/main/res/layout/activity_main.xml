@@ -47,7 +47,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:text="@string/add_entry"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
@@ -55,9 +55,18 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:text="Create QR Code"
         android:id="@+id/new_qr"
         android:layout_gravity="center_horizontal"
         android:onClick="generateQR"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:id="@+id/profile_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="profile_page"/>
+
 </LinearLayout>

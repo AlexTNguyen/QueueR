@@ -2,6 +2,7 @@ package com.alextommy.queuer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,6 +16,10 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
@@ -30,6 +35,7 @@ public class EntryList extends AppCompatActivity {
     private List<String> keys = new ArrayList<String>();
     private String currentKey;
     private Customer current;
+    private FirebaseAuth auth;
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Dewick").child("Entries");
     private ListView listView;
@@ -40,6 +46,7 @@ public class EntryList extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listview);
+        auth = FirebaseAuth.getInstance();
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,17 +92,28 @@ public class EntryList extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void profile_page(View view) {
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+    }
+
     public void addEntry(View view) {
         EditText name   = (EditText)popupView.findViewById(R.id.nameEntry);
         EditText size   = (EditText)popupView.findViewById(R.id.sEntry);
-        Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
-        mDatabase.push().setValue(newEntry);
-        adapter.insert(newEntry);
-        ListView listView = (ListView) findViewById(R.id.listview);
-        adapter.sort();
-        listView.setAdapter(adapter);
-        Log.v("hi", "hi");
-        popupWindow.dismiss();
+        if (name.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Enter a Name!", Toast.LENGTH_SHORT).show();
+        } else if (size.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Enter party size!", Toast.LENGTH_SHORT).show();
+        } else {
+            Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
+            mDatabase.push().setValue(newEntry);
+            adapter.insert(newEntry);
+            ListView listView = (ListView) findViewById(R.id.listview);
+            adapter.sort();
+            listView.setAdapter(adapter);
+            Log.v("hi", "hi");
+            popupWindow.dismiss();
+        }
     }
 
     public void showPopup(View view) {

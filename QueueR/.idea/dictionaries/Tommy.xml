@@ -6,6 +6,8 @@
       <w>queuer</w>
       <w>rcode</w>
       <w>rgen</w>
+      <w>signout</w>
+      <w>signup</w>
     </words>
   </dictionary>
 </component>

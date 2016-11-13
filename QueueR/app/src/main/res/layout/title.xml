@@ -33,6 +33,6 @@
                 android:text="@string/restaurant"
                 android:id="@+id/restaurant"
                 android:layout_gravity="center_horizontal"
-                android:onClick="showList"/>
+                android:onClick="login"/>
         </LinearLayout>
 </LinearLayout>

@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         startActivity(intent);
     }
 
+    public void login(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void addEntry(View view) {
         String name   = ((EditText)popupView.findViewById(R.id.nameEntry)).getText().toString();
         String size   = ((EditText)popupView.findViewById(R.id.sEntry)).getText().toString();
@@ -130,9 +135,11 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            mScannerView.stopCamera();
-            setContentView(R.layout.title);
-            return true;
+            if (mScannerView != null) {
+                mScannerView.stopCamera();
+                setContentView(R.layout.title);
+                return true;
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
