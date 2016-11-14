@@ -19,14 +19,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.client.result.ParsedResult;
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private DatabaseReference mDatabase;
+    private DatabaseReference restaurant;
+    private String restaurant_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +141,19 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         setContentView(R.layout.title);
         String id = rawResult.getText();
         mDatabase = FirebaseDatabase.getInstance().getReference().child(id).child("Entries");
+//        restaurant = FirebaseDatabase.getInstance().getReference().child(id).child("Restaurant");
+//        restaurant.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                for (DataSnapshot child : snapshot.getChildren()) {
+//                    restaurant_name = child.getValue(String.class);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.v("IT", "BROKE");
+//            }
+//        });
         PopupCustomer();
     }
 
@@ -148,8 +167,19 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         // Log.v("pls", "work")
     }
 
-    public void newCustomer() {
-        
+    public void newCustomer(View view) {
+        EditText name   = (EditText)popupView.findViewById(R.id.nameEntry_customer);
+        EditText size   = (EditText)popupView.findViewById(R.id.sEntry_customer);
+        if (name.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Enter a Name!", Toast.LENGTH_SHORT).show();
+        } else if (size.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Enter party size!", Toast.LENGTH_SHORT).show();
+        } else {
+            Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
+            mDatabase.push().setValue(newEntry);
+            Toast.makeText(getApplicationContext(), "Successfully added to the restaurant's Queue!", Toast.LENGTH_LONG).show();
+            popupWindow.dismiss();
+        }
     }
 
     @Override

@@ -11,32 +11,32 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/header_name"
-        android:id="@+id/nameLabel" />
+        android:id="@+id/nameLabel_customer" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:id="@+id/nameEntry" />
+        android:id="@+id/nameEntry_customer" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/header_party_size"
-        android:id="@+id/sizeLabel" />
+        android:id="@+id/sizeLabel_customer" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:id="@+id/sEntry" />
+        android:id="@+id/sEntry_customer" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
-        android:id="@+id/button2"
+        android:id="@+id/button2_customer"
         android:layout_gravity="center_horizontal"
         android:onClick="newCustomer"/>
 
