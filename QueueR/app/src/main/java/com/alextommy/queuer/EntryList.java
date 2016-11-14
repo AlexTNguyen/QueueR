@@ -32,7 +32,6 @@ public class EntryList extends AppCompatActivity {
     private View popupView;
     private PopupWindow popupWindow;
     private int temp_pos;
-    private List<String> keys = new ArrayList<String>();
     private String currentKey;
     private Customer current;
     private FirebaseAuth auth;
@@ -59,7 +58,6 @@ public class EntryList extends AppCompatActivity {
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Customer entry = child.getValue(Customer.class);
                     adapter.insert(entry);
-                    keys.add(child.getKey());
                 }
                 adapter.sort();
                 listView.setAdapter(adapter);
@@ -111,8 +109,8 @@ public class EntryList extends AppCompatActivity {
             Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
             ListView listView = (ListView) findViewById(R.id.listview);
             DatabaseReference pushedRef = mDatabase.push();
+            newEntry.setKey(pushedRef.getKey());
             pushedRef.setValue(newEntry);
-            keys.add(pushedRef.getKey());
             popupWindow.dismiss();
         }
     }
@@ -138,11 +136,7 @@ public class EntryList extends AppCompatActivity {
         newCustomer.setName(name.getText().toString());
         newCustomer.setSize(Integer.parseInt(size.getText().toString()));
         newCustomer.setStatus(status);
-        adapter.insert_at(newCustomer, temp_pos);
         mDatabase.child(currentKey).setValue(newCustomer);
-        ListView listView = (ListView) findViewById(R.id.listview);
-        adapter.sort();
-        listView.setAdapter(adapter);
         popupWindow.dismiss();
     }
 
@@ -168,7 +162,7 @@ public class EntryList extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             temp_pos = position;
             current = (Customer)adapter.getItem(position);
-            currentKey = keys.get(position);
+            currentKey = current.getKey();
             editPopup();
         }
     };

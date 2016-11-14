@@ -11,6 +11,7 @@ public class Customer {
     public Date checkin;
     public Date estimate;
     public int status;
+    public String key;
 
     public Customer(){
     }
@@ -21,6 +22,7 @@ public class Customer {
         checkin = new Date();
         estimate = null;
         status = 0;
+        key = "";
     }
 
     public int getStatus() {
@@ -34,6 +36,15 @@ public class Customer {
     public String getName() {
         return name;
     }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
 
 
     public int getSize() {

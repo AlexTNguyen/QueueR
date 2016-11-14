@@ -12,12 +12,14 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:layout_weight="0.71"
+        android:layout_gravity="left"
         />
 
     <TextView android:id="@+id/column2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Size"
+        android:layout_gravity="left"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:layout_weight="0.30" />
@@ -28,6 +30,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:text="Check-In"
+        android:layout_gravity="left"
         android:layout_weight="1"
         />
 

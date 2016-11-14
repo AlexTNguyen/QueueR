@@ -25,6 +25,7 @@
                 android:text="@string/customer"
                 android:id="@+id/customer"
                 android:layout_gravity="center_horizontal"
+                android:background="@color/colorAccent"
                 android:onClick="scanQR"/>
 
             <Button
@@ -33,6 +34,8 @@
                 android:text="@string/restaurant"
                 android:id="@+id/restaurant"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorAccent"
                 android:onClick="login"/>
         </LinearLayout>
 </LinearLayout>

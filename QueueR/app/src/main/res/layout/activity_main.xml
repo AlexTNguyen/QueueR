@@ -17,10 +17,14 @@
         <TextView android:id="@+id/column_header1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:paddingBottom="5dp"
             android:layout_weight="0.71"
-            android:background="#25A7E3"
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
             />
         <!--  Column 2 header -->
         <TextView android:id="@+id/column_header2"
@@ -28,15 +32,23 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_weight="0.30"
-            android:background="#25A7E3"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            android:layout_gravity="left"
+            android:paddingBottom="5dp"
+            android:background="@color/colorAccent"
             />
 
         <TextView android:id="@+id/column_header3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="left"
             android:layout_weight="1"
-            android:background="#25A7E3"
+            android:background="@color/colorAccent"
             />
     </LinearLayout>
 
@@ -51,7 +63,9 @@
         android:layout_height="wrap_content"
         android:text="@string/add_entry"
         android:id="@+id/button"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent"
         android:onClick="showPopup"/>
 
     <Button
@@ -59,14 +73,18 @@
         android:layout_height="wrap_content"
         android:text="@string/QRcode"
         android:id="@+id/new_qr"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent"
         android:onClick="generateQR"/>
 
     <Button
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/Profile"
+        android:layout_marginTop="5dp"
         android:id="@+id/profile_btn"
+        android:background="@color/colorAccent"
         android:layout_gravity="center_horizontal"
         android:onClick="profile_page"/>
 
