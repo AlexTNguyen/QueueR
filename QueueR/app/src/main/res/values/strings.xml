@@ -27,6 +27,10 @@
     <string name="btn_remove">Remove</string>
     <string name="btn_sign_out">Sign Out</string>
     <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="Profile">Profile</string>
+    <string name="save_btn">Save your qr code</string>
+    <string name="QRcode_text">Text: empty</string>
+    <string name="QRcode">Your QR Code</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="title_activity_entry_list">EntryList</string>
     <string name="header_name">Name</string>

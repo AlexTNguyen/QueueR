@@ -23,6 +23,10 @@ import android.widget.PopupWindow;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.Result;
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.client.result.ParsedResult;
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private PopupWindow popupWindow;
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup,
                 (ViewGroup) findViewById(R.id.popup));
-        popupWindow = new PopupWindow(popupView, 600, 800, true);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
         // Log.v("pls", "work")
     }
@@ -122,14 +127,29 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result rawResult) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setMessage(rawResult.getText());
-        AlertDialog alert1 = builder.create();
-        alert1.show();
-//        Toast.makeText(this, "Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString(), Toast.LENGTH_SHORT).show();
-//        mScannerView.resumeCameraPreview(this);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Scan Result");
+//        builder.setMessage(rawResult.getText());
+//        AlertDialog alert1 = builder.create();
+//        alert1.show();
         setContentView(R.layout.title);
+        String id = rawResult.getText();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(id).child("Entries");
+        PopupCustomer();
+    }
+
+    public void PopupCustomer() {
+        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+                .getSystemService(LAYOUT_INFLATER_SERVICE);
+        popupView = layoutInflater.inflate(R.layout.popup_customer,
+                (ViewGroup) findViewById(R.id.popup_customer));
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+        // Log.v("pls", "work")
+    }
+
+    public void newCustomer() {
+        
     }
 
     @Override
