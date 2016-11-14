@@ -66,7 +66,6 @@ public class EntryList extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.v("IT", "BROKE");
             }
         });
 
