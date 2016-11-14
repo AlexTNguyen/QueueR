@@ -37,6 +37,7 @@ public class EntryList extends AppCompatActivity {
     private Customer current;
     private FirebaseAuth auth;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private boolean initial = true;
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("Entries");
     private ListView listView;
@@ -51,9 +52,10 @@ public class EntryList extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         entrylist = this;
 
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                adapter.clear();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Customer entry = child.getValue(Customer.class);
                     adapter.insert(entry);
@@ -67,25 +69,6 @@ public class EntryList extends AppCompatActivity {
                 Log.v("IT", "BROKE");
             }
         });
-
-//        ValueEventListener entryListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Customer entry = dataSnapshot.getValue(Customer.class);
-//                Log.v("name", entry.getName());
-//                if(entry != null) {
-//                    adapter.insert(entry);
-//                    keys.add(dataSnapshot.getKey());
-//                    adapter.sort();
-//                    listView.setAdapter(adapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        };
-//        mDatabase.addValueEventListener(entryListener);
 
         if(intent.getStringExtra("add").equals("true")) {
             String name = intent.getStringExtra("name");
@@ -126,12 +109,10 @@ public class EntryList extends AppCompatActivity {
             Toast.makeText(this, "Enter party size!", Toast.LENGTH_SHORT).show();
         } else {
             Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
-            adapter.insert(newEntry);
             ListView listView = (ListView) findViewById(R.id.listview);
-            mDatabase.push().setValue(newEntry);
-            adapter.sort();
-            listView.setAdapter(adapter);
-            Log.v("hi", "hi");
+            DatabaseReference pushedRef = mDatabase.push();
+            pushedRef.setValue(newEntry);
+            keys.add(pushedRef.getKey());
             popupWindow.dismiss();
         }
     }
@@ -178,7 +159,6 @@ public class EntryList extends AppCompatActivity {
         size.setText(Integer.toString(current.getSize()));
         Spinner spinner = (Spinner)popupView.findViewById(R.id.spinner);
         int statusID = current.getStatus();
-        Log.v("status", Integer.toString(statusID));
         spinner.setSelection(statusID);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);

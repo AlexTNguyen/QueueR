@@ -63,6 +63,10 @@ public class CustomerAdapter extends BaseAdapter {
         return list.size();
     }
 
+    public void clear() {
+        list.clear();
+    }
+
     @Override
     public Object getItem(int position) {
         return list.get(position);

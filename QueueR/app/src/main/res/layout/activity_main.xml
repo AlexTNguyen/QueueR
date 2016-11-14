@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#25A7E3"
     android:weightSum="1">
 
     <!-- Third header line and column headings -->
@@ -46,7 +47,7 @@
         android:layout_weight="1" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/add_entry"
         android:id="@+id/button"
@@ -54,7 +55,7 @@
         android:onClick="showPopup"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/QRcode"
         android:id="@+id/new_qr"
@@ -62,7 +63,7 @@
         android:onClick="generateQR"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="@string/Profile"
         android:id="@+id/profile_btn"
