@@ -7,22 +7,27 @@
     <TextView android:id="@+id/column1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/header_name"
+        android:text="Name"
         android:paddingLeft="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_weight="0.71"
         />
 
     <TextView android:id="@+id/column2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/header_party_size"
-        android:layout_weight="0.30"
-        />
+        android:text="Size"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_weight="0.30" />
 
     <TextView android:id="@+id/column3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/header_wait_time"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Check-In"
         android:layout_weight="1"
         />
 
