@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, EntryList.class);
                                     intent.putExtra("add", "false");
+                                    intent.putExtra("email", inputEmail.getText().toString());
                                     startActivity(intent);
                                     finish();
                                 }
