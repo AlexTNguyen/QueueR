@@ -40,6 +40,7 @@ public class EntryList extends AppCompatActivity {
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("Entries");
     private ListView listView;
+    public static AppCompatActivity entrylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class EntryList extends AppCompatActivity {
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listview);
         auth = FirebaseAuth.getInstance();
+        entrylist = this;
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

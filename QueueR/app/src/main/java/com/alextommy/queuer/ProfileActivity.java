@@ -235,6 +235,7 @@ public class ProfileActivity extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EntryList.entrylist.finish();
                 signOut();
             }
         });
