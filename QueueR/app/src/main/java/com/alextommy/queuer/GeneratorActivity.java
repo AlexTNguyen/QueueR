@@ -39,11 +39,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class GeneratorActivity extends AppCompatActivity {
-//    private EditText text;
-//    private Button gen_btn;
     private ImageView image;
     private String text2Qr;
-//    private TextView tv;
     private Bitmap bitmap;
     private View popupView;
     private PopupWindow popupWindow;
@@ -54,30 +51,6 @@ public class GeneratorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generator);
-//        text = (EditText) findViewById(R.id.qr_text);
-////        gen_btn = (Button) findViewById(R.id.gen_btn);
-//        image = (ImageView) findViewById(R.id.image);
-//        tv = (TextView)findViewById(R.id.imageText);
-//        gen_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                text2Qr = text.getText().toString().trim();
-//                if (text2Qr.isEmpty()) {
-//                    Toast.makeText(getApplicationContext(), "Text is Empty!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-//                    try {
-//                        BitMatrix bitMatrix = multiFormatWriter.encode(text2Qr, BarcodeFormat.QR_CODE, 300, 300);
-//                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-//                        bitmap = barcodeEncoder.createBitmap(bitMatrix);
-//                        image.setImageBitmap(bitmap);
-//                        tv.setText(text2Qr);
-//                    } catch (WriterException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         text2Qr = user.getUid().trim();
         image = (ImageView) findViewById(R.id.image);

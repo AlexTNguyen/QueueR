@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private DatabaseReference mDatabase;
-    private DatabaseReference restaurant;
-    private String restaurant_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +53,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.title);
     }
-
-//    public void showList(View view) {
-//        Intent intent = new Intent(this, EntryList.class);
-//        intent.putExtra("add", "false");
-//        startActivity(intent);
-//    }
 
     public void login(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -85,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 (ViewGroup) findViewById(R.id.popup));
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        // Log.v("pls", "work")
     }
 
     public void scanQR(View view){
@@ -133,27 +124,9 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result rawResult) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Scan Result");
-//        builder.setMessage(rawResult.getText());
-//        AlertDialog alert1 = builder.create();
-//        alert1.show();
         setContentView(R.layout.title);
         String id = rawResult.getText();
         mDatabase = FirebaseDatabase.getInstance().getReference().child(id).child("Entries");
-//        restaurant = FirebaseDatabase.getInstance().getReference().child(id).child("Restaurant");
-//        restaurant.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//                for (DataSnapshot child : snapshot.getChildren()) {
-//                    restaurant_name = child.getValue(String.class);
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Log.v("IT", "BROKE");
-//            }
-//        });
         PopupCustomer();
     }
 
@@ -164,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 (ViewGroup) findViewById(R.id.popup_customer));
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        // Log.v("pls", "work")
     }
 
     public void newCustomer(View view) {
