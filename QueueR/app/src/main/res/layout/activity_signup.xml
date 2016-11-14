@@ -13,7 +13,8 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:weightSum="1">
 
 
         <ImageView
@@ -54,6 +55,24 @@
                 android:maxLines="1"
                 android:textColor="@android:color/white" />
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/restaurant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/restaurant_edit"
+                    android:imeActionId="@+id/login"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -70,19 +89,20 @@
         <Button
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginTop="20dip"
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:layout_weight="0.05" />
 
         <!-- Link to Login Screen -->
 
         <Button
             android:id="@+id/sign_in_button"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="19dp"
             android:layout_marginTop="20dip"
             android:background="@null"
             android:text="@string/btn_link_to_login"
