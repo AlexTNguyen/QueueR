@@ -92,19 +92,21 @@ public class SignupActivity extends AppCompatActivity {
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
+                                    String error = "" + task.getException();
+                                    String arr [] = error.split(":");
+                                    Toast.makeText(SignupActivity.this, "Registration failed! " + arr[1],
+                                            Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
                                 } else {
+                                    Toast.makeText(SignupActivity.this, "You have registered successfully!", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     mDatabase.child(user.getUid()).child("Restaurant").setValue(restaurant);
-
                                     finish();
                                 }
                             }

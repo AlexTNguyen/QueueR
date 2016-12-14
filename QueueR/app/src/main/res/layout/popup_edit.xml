@@ -49,7 +49,9 @@
         android:text="@string/edit"
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal"
-        android:onClick="editEntry"/>
+        android:onClick="editEntry"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>

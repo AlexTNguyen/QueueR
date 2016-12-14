@@ -65,6 +65,7 @@
         android:id="@+id/button"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
         android:background="@color/colorAccent"
         android:onClick="showPopup"/>
 
@@ -75,6 +76,7 @@
         android:id="@+id/new_qr"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
         android:background="@color/colorAccent"
         android:onClick="generateQR"/>
 
@@ -85,6 +87,7 @@
         android:layout_marginTop="5dp"
         android:id="@+id/profile_btn"
         android:background="@color/colorAccent"
+        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
         android:onClick="profile_page"/>
 

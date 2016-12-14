@@ -38,7 +38,9 @@
         android:text="@string/add"
         android:id="@+id/button2_customer"
         android:layout_gravity="center_horizontal"
-        android:onClick="newCustomer"/>
+        android:onClick="newCustomer"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>

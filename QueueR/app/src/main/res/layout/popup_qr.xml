@@ -19,6 +19,8 @@
         android:text="YES"
         android:id="@+id/yes_button"
         android:layout_gravity="center_horizontal"
-        android:onClick="saveImage"/>
+        android:onClick="saveImage"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
 
 </LinearLayout>
