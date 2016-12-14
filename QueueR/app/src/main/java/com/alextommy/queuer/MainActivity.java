@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private DatabaseReference mDatabase;
+    private View tempview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             mScannerView.startCamera(); // Start camera
         } else {
+            tempview = view;
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
                     MY_PERMISSIONS_REQUEST_CAMERA);
@@ -104,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                     ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.CAMERA},
                             MY_PERMISSIONS_REQUEST_CAMERA);
+                } else {
+                    scanQR(tempview);
                 }
                 return;
             }
