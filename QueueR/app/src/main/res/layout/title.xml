@@ -27,7 +27,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorAccent"
                 android:textColor="@color/white"
-                android:onClick="scanQR"/>
+                android:onClick="customerView"/>
 
             <Button
                 android:layout_width="120dp"

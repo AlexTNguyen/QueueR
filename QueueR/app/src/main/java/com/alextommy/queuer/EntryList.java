@@ -37,7 +37,6 @@ public class EntryList extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private boolean initial = true;
-
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("Entries");
     private ListView listView;
     public static AppCompatActivity entrylist;
