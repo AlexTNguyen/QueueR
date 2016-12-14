@@ -104,7 +104,15 @@ public class SignupActivity extends AppCompatActivity {
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     mDatabase.child(user.getUid()).child("Restaurant").setValue(restaurant);
-
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+//                                                        Log.d(TAG, "Email sent.");
+                                                    }
+                                                }
+                                            });
                                     finish();
                                 }
                             }
