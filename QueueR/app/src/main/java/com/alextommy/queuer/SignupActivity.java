@@ -104,7 +104,7 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(SignupActivity.this, "You have registered successfully!", Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);
-                                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                                    startActivity(new Intent(SignupActivity.this, EntryList.class));
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     mDatabase.child(user.getUid()).child("Restaurant").setValue(restaurant);
                                     finish();

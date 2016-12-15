@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/gray"
+    android:padding="5pt"
+    android:background="@color/colorPopup"
     android:id="@+id/popup_newscan">
 
     <TextView
@@ -22,6 +23,6 @@
         android:layout_gravity="center_horizontal"
         android:onClick="scanQR"
         android:background="@color/colorAccent"
-        android:textColor="@color/white"/>
+        android:textColor="@color/colorPrimary"/>
 
 </LinearLayout>

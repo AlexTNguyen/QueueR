@@ -38,13 +38,13 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
-            android:text="@string/header_name"
-            android:textSize="14sp"
+            android:textSize="8pt"
             android:textStyle="bold"
             android:paddingBottom="5dp"
             android:layout_weight="0.71"
             android:layout_gravity="left"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
         <!--  Column 2 header -->
         <TextView android:id="@+id/column_header2"
@@ -53,11 +53,11 @@
             android:textStyle="bold"
             android:layout_weight="0.30"
             android:paddingTop="5dp"
-            android:text="@string/header_size"
-            android:textSize="14sp"
+            android:textSize="8pt"
             android:layout_gravity="left"
             android:paddingBottom="5dp"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
 
         <TextView android:id="@+id/column_header3"
@@ -65,12 +65,12 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:paddingTop="5dp"
-            android:text="@string/header_wait_time"
-            android:textSize="14sp"
+            android:textSize="8pt"
             android:paddingBottom="5dp"
             android:layout_gravity="left"
             android:layout_weight="1"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
     </LinearLayout>
 
@@ -79,39 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <!--<Button-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/add_entry"-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--android:onClick="showPopup"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/QRcode"-->
-        <!--android:id="@+id/new_qr"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--android:onClick="generateQR"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/Profile"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:id="@+id/profile_btn"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:onClick="profile_page"/>-->
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"

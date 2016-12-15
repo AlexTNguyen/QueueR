@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimary">#25A7E3</color>
     <color name="colorPrimaryDark">#25A7E3</color>
-    <color name="colorAccent">#A0522D</color>
+    <color name="colorAccent">#ffffff</color>
 
-    <color name="gray">#A9A9A9</color>
+    <color name="colorPopup">#2595FF</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

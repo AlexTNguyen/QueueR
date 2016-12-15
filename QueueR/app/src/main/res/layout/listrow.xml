@@ -5,6 +5,7 @@
     android:orientation="horizontal" >
 
     <TextView android:id="@+id/column1"
+        android:textSize="8pt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -16,7 +17,8 @@
         />
 
     <TextView android:id="@+id/column2"
-        android:layout_width="wrap_content"
+        android:textSize="8pt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Size"
         android:layout_gravity="left"
@@ -25,6 +27,7 @@
         android:layout_weight="0.30" />
 
     <TextView android:id="@+id/column3"
+        android:textSize="8pt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"

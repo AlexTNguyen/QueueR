@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5pt"
     android:orientation="vertical"
+    android:padding="5pt"
     android:background="@color/colorPopup"
-    android:id="@+id/popup_qr">
+    android:id="@+id/popup_totitle">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="center_horizontal"
-        android:text="Save QR code to gallery?"/>
+        android:textAlignment="center"
+        android:layout_marginBottom="15pt"
+        android:text="Quit current session?\nYou will be removed from the queue"/>
 
     <Button
-        android:layout_marginTop="15pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="YES"
         android:id="@+id/yes_button"
         android:layout_gravity="center_horizontal"
-        android:onClick="saveImage"
+        android:onClick="quitConfirm"
         android:background="@color/colorAccent"
         android:textColor="@color/colorPrimary"/>
 

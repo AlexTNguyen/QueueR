@@ -1,12 +1,23 @@
 package com.alextommy.queuer;
 
 import android.*;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.RingtoneManager;
+import android.os.PowerManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,186 +42,137 @@ import java.util.UUID;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class CustomerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+public class CustomerActivity extends AppCompatActivity {
 
     private final CustomerAdapter adapter = new CustomerAdapter(this, new ArrayList<Customer>());
     private String database_id;
     private DatabaseReference mDatabase;
     private DatabaseReference restaurant;
-    private String restaurant_name = "default";
-    private Customer current = null;
-    private ZXingScannerView mScannerView;
+    private String restaurant_name = "N/A";
+    private String customer_key = null;
     private View popupView;
     private PopupWindow popupWindow;
-    private boolean on = false;
-    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
-    private View tempview;
-    private int position = 99;
+    private int position = 0;
+    private Customer current;
+    private  NotificationManager mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-    }
+        final TextView r_name = (TextView) findViewById(R.id.restaurant_info);
+        final TextView c_pos = (TextView) findViewById(R.id.customer_info);
+        final TextView c_name = (TextView) findViewById(R.id.name_info);
+        Intent intent = getIntent();
+        database_id = intent.getStringExtra("id");
+        customer_key = intent.getStringExtra("key");
+        mNotificationManager = (NotificationManager) this.getApplicationContext().getSystemService(this.NOTIFICATION_SERVICE);
 
-    // popup for restaurant to manually enter customer info
-    public void showPopup(View view) {
-        LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
-                .getSystemService(LAYOUT_INFLATER_SERVICE);
-        popupView = layoutInflater.inflate(R.layout.popup,
-                (ViewGroup) findViewById(R.id.popup));
-        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-    }
+        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+        editor.putBoolean("open", true);
+        editor.apply();
 
-    public void newScan(View view) {
-        if (current == null) {
-            scanQR(view);
-        } else {
-            LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
-                    .getSystemService(LAYOUT_INFLATER_SERVICE);
-            popupView = layoutInflater.inflate(R.layout.popup_newscan,
-                    (ViewGroup) findViewById(R.id.popup_newscan));
-            popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        }
-    }
+        // get database of scanned restaurant
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(database_id).child("Entries");
+        restaurant = FirebaseDatabase.getInstance().getReference().child(database_id).child("Restaurant");
 
-    // handle QR code scan request
-    public void scanQR(View view){
-        mScannerView = new ZXingScannerView(this); // Programmatically initialize the scanner view
-        setContentView(mScannerView);
-        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
-        on = true;
+        restaurant.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                restaurant_name = snapshot.getValue(String.class);
+                // set restaurant name
+                String name = "Restaurant: " + restaurant_name;
+                r_name.setText(name);
+            }
 
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            mScannerView.startCamera(); // Start camera
-        } else {
-            tempview = view;
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.CAMERA},
-                    MY_PERMISSIONS_REQUEST_CAMERA);
-        }
-    }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{android.Manifest.permission.CAMERA},
-                            MY_PERMISSIONS_REQUEST_CAMERA);
-                } else {
-                    scanQR(tempview);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                adapter.clear();
+                position = 0;
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Customer entry = child.getValue(Customer.class);
+                    adapter.insert(entry);
+                }
+                adapter.sort();
+                for (int i = 0; i < adapter.getCount(); i++) {
+                    Customer entry = (Customer) adapter.getItem(i);
+                    if (entry.status == 0) {
+                        position++;
+                    }
+                    if (entry.key.equals(customer_key)) {
+                        current = entry;
+                        break;
+                    }
+                }
+                // set customer info
+                String name = "Hi " + current.name + "!";
+                String customer = "Your are #" + String.valueOf(position) + " in the queue";
+                c_name.setText(name);
+                c_pos.setText(customer);
+                if (current.status != 0) {
+                    SharedPreferences prefs = getSharedPreferences("customerActivity", MODE_PRIVATE);
+                    Boolean status = prefs.getBoolean("open", true);
+                    if (status) {
+                        Toast.makeText(getApplicationContext(), name + " You are off the queue", Toast.LENGTH_LONG).show();
+                        make_notification(name, "You haven been seated!");
+                        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+                        editor.putBoolean("open", false);
+                        editor.apply();
+                        CustomerActivity.this.finish();
+                    }
+                } else if (position == 1) {
+                    make_notification(name, "You're next!");
                 }
             }
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(on) {
-            mScannerView.stopCamera(); // Stop camera on pause
-            setContentView(R.layout.activity_customer);
-        }
-        on = false;
+    public void make_notification(String title, String text){
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        resultIntent.setAction(Intent.ACTION_MAIN);
+        resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                resultIntent, 0);
+
+        // Building the notification
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
+                        R.drawable.logo)) // notification icon
+                .setSmallIcon(R.drawable.title)
+                .setContentTitle(title) // main title of the notification
+                .setContentText(text) // notification text
+                .setContentIntent(pendingIntent) // notification intent
+                .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                .setAutoCancel(true)
+                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)); // notification sound
+        mNotificationManager.notify(10, mBuilder.build());
     }
 
-    // handle the result of QR code scan
-    @Override
-    public void handleResult(Result rawResult) {
-        database_id = rawResult.getText();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(database_id).child("Entries");
-        PopupCustomer();
-    }
-
-    // Popup window for customer to enter their information
-    public void PopupCustomer() {
+    public void quitCustomer(View view) {
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
-        popupView = layoutInflater.inflate(R.layout.popup_customer,
-                (ViewGroup) findViewById(R.id.popup_customer));
+        popupView = layoutInflater.inflate(R.layout.popup_totitle,
+                (ViewGroup) findViewById(R.id.popup_totitle));
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
     }
 
-    // handle the information that customer entered in the popup window
-    public void newCustomer(View view) {
-        EditText name   = (EditText)popupView.findViewById(R.id.nameEntry_customer);
-        EditText size   = (EditText)popupView.findViewById(R.id.sEntry_customer);
-        if (name.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Enter a Name!", Toast.LENGTH_SHORT).show();
-        } else if (size.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Enter party size!", Toast.LENGTH_SHORT).show();
-        } else {
-            Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
-            DatabaseReference pushedRef = mDatabase.push();
-            newEntry.setKey(pushedRef.getKey());
-            pushedRef.setValue(newEntry);
-            Toast.makeText(getApplicationContext(), "Successfully added to the restaurant's Queue!", Toast.LENGTH_LONG).show();
-            popupWindow.dismiss();
-            current = newEntry;
-            // get database of scanned restaurant
-            mDatabase = FirebaseDatabase.getInstance().getReference().child(database_id).child("Entries");
-            restaurant = FirebaseDatabase.getInstance().getReference().child(database_id).child("Restaurant");
-
-            restaurant.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    restaurant_name = snapshot.getValue(String.class);
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-
-
-            System.out.print("adding listener");
-            mDatabase.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    adapter.clear();
-                    for (DataSnapshot child : snapshot.getChildren()) {
-                        Customer entry = child.getValue(Customer.class);
-                        adapter.insert(entry);
-                    }
-                    adapter.sort();
-                    for (int i = 0; i < adapter.getCount(); i++) {
-                        Customer entry = (Customer) adapter.getItem(i);
-                        if (entry.key.equals(current.key) && entry.name.equals(current.name)) {
-                            position = i;
-                            break;
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-
-            // set restaurant name
-            setContentView(R.layout.activity_customer);
-            TextView r_name = (TextView) findViewById(R.id.restaurant_info);
-            TextView c_pos = (TextView) findViewById(R.id.customer_info);
-            r_name.setText(restaurant_name);
-            c_pos.setText(String.valueOf(position));
-        }
+    public void quitConfirm(View view) {
+        popupWindow.dismiss();
+        mDatabase.child(customer_key).removeValue();
+        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+        editor.putBoolean("open", false);
+        editor.apply();
+        this.finish();
     }
-
-    // make sure pressing the "back" button when in scanner view doesn't close the app
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event)  {
-//        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-//            if (mScannerView != null) {
-//                mScannerView.stopCamera();
-//                setContentView(R.layout.activity_customer);
-//                return true;
-//            }
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
 }

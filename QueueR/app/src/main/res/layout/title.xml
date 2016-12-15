@@ -22,11 +22,24 @@
             <Button
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/customer"
+                android:text="Scan QR CODE"
                 android:id="@+id/customer"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorAccent"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="5dp"
+                android:onClick="scanQR"/>
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/customer"
+                android:id="@+id/customer_view"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="5dp"
+                android:visibility="gone"
                 android:onClick="customerView"/>
 
             <Button
@@ -35,9 +48,9 @@
                 android:text="@string/restaurant"
                 android:id="@+id/restaurant"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_margin="5dp"
                 android:background="@color/colorAccent"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:onClick="login"/>
         </LinearLayout>
 </LinearLayout>
