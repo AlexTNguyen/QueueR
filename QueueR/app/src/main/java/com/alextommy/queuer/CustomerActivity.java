@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -65,6 +66,10 @@ public class CustomerActivity extends AppCompatActivity {
         customer_key = intent.getStringExtra("key");
         mNotificationManager = (NotificationManager) this.getApplicationContext().getSystemService(this.NOTIFICATION_SERVICE);
 
+        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+        editor.putBoolean("open", true);
+        editor.apply();
+
         // get database of scanned restaurant
         mDatabase = FirebaseDatabase.getInstance().getReference().child(database_id).child("Entries");
         restaurant = FirebaseDatabase.getInstance().getReference().child(database_id).child("Restaurant");
@@ -103,7 +108,6 @@ public class CustomerActivity extends AppCompatActivity {
                         break;
                     }
                 }
-
                 // set customer info
                 String name = "Hi " + current.name + "!";
                 String customer = "Your are #" + String.valueOf(position) + " in the queue";
@@ -112,8 +116,11 @@ public class CustomerActivity extends AppCompatActivity {
                 if (position == 1) {
                     make_notification(name, "You're next!");
                 }
+                if (current.status != 0) {
+                    Toast.makeText(getApplicationContext(), "Hi " + current.name + ", you are off the queue!", Toast.LENGTH_LONG).show();
+                    CustomerActivity.this.finish();
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -136,7 +143,7 @@ public class CustomerActivity extends AppCompatActivity {
 //        // Pending intent to the notification manager
 //        PendingIntent resultPending = stackBuilder
 //                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        Intent resultIntent = new Intent(this, CustomerActivity.class);
+        Intent resultIntent = new Intent(this, MainActivity.class);
         resultIntent.setAction(Intent.ACTION_MAIN);
         resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
@@ -168,10 +175,11 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
     public void quitConfirm(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
         popupWindow.dismiss();
         mDatabase.child(customer_key).removeValue();
+        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+        editor.putBoolean("open", false);
+        editor.apply();
         this.finish();
-        startActivity(intent);
     }
 }

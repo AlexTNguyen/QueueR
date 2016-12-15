@@ -1,6 +1,7 @@
 package com.alextommy.queuer;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.os.Handler;
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private View tempview;
-    private Button qr;
-    private Button customer;
+    public Button qr;
+    public Button customer;
     private String customer_key;
 
     @Override
@@ -192,5 +193,19 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();  // Always call the superclass method first
+        SharedPreferences prefs = getSharedPreferences("customerActivity", MODE_PRIVATE);
+        Boolean status = prefs.getBoolean("open", true);
+        if (!status) {
+            setContentView(R.layout.title);
+            qr = (Button) findViewById(R.id.customer);
+            customer = (Button) findViewById(R.id.customer_view);
+            qr.setVisibility(View.VISIBLE);
+            customer.setVisibility(View.GONE);
+        }
     }
 }
