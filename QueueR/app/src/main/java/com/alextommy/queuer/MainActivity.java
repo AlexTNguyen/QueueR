@@ -198,8 +198,10 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void onResume(){
         super.onResume();  // Always call the superclass method first
+        // determine if customerActivity is still running
         SharedPreferences prefs = getSharedPreferences("customerActivity", MODE_PRIVATE);
         Boolean status = prefs.getBoolean("open", true);
+        // if customerActivity is closed, reveal the scan qr button and hide the customer button
         if (!status) {
             setContentView(R.layout.title);
             qr = (Button) findViewById(R.id.customer);

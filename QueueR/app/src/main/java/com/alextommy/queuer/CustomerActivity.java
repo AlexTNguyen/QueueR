@@ -11,11 +11,13 @@ import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.RingtoneManager;
+import android.os.PowerManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -113,15 +115,19 @@ public class CustomerActivity extends AppCompatActivity {
                 String customer = "Your are #" + String.valueOf(position) + " in the queue";
                 c_name.setText(name);
                 c_pos.setText(customer);
-                if (position == 1) {
-                    make_notification(name, "You're next!");
-                }
                 if (current.status != 0) {
-                    Toast.makeText(getApplicationContext(), "Hi " + current.name + ", you are off the queue!", Toast.LENGTH_LONG).show();
-                    SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
-                    editor.putBoolean("open", false);
-                    editor.apply();
-                    CustomerActivity.this.finish();
+                    SharedPreferences prefs = getSharedPreferences("customerActivity", MODE_PRIVATE);
+                    Boolean status = prefs.getBoolean("open", true);
+                    if (status) {
+                        Toast.makeText(getApplicationContext(), name + " You are off the queue", Toast.LENGTH_LONG).show();
+                        make_notification(name, "You haven been seated!");
+                        SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+                        editor.putBoolean("open", false);
+                        editor.apply();
+                        CustomerActivity.this.finish();
+                    }
+                } else if (position == 1) {
+                    make_notification(name, "You're next!");
                 }
             }
             @Override
@@ -131,21 +137,6 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
     public void make_notification(String title, String text){
-//        Intent resultIntent = new Intent(this, CustomerActivity.class);
-//        // Creating a artifical activity stack for the notification activity
-//        // The stack builder object will contain an artificial back stack for the
-//        // started Activity.
-//        // This ensures that navigating backward from the Activity leads out of
-//        // your application to the Home screen.
-//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-//        // Adds the back stack for the Intent (but not the Intent itself)
-//        stackBuilder.addParentStack(CustomerActivity.class);
-//        // Adds the Intent that starts the Activity to the top of the stack
-//        stackBuilder.addNextIntent(resultIntent);
-//
-//        // Pending intent to the notification manager
-//        PendingIntent resultPending = stackBuilder
-//                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent resultIntent = new Intent(this, MainActivity.class);
         resultIntent.setAction(Intent.ACTION_MAIN);
         resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -164,7 +155,6 @@ public class CustomerActivity extends AppCompatActivity {
                 .setAutoCancel(true)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)); // notification sound
-        // mId allows you to update the notification later on.
         mNotificationManager.notify(10, mBuilder.build());
     }
 
