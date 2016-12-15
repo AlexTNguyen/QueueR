@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private View tempview;
+    private Button qr;
+    private Button customer;
+    private String customer_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     // go to login page
     public void login(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void customerView(View view) {
+        Intent intent = new Intent(this, CustomerActivity.class);
+        intent.putExtra("id", database_id);
+        intent.putExtra("key", customer_key);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
@@ -116,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         super.onPause();
         if(on) {
             mScannerView.stopCamera(); // Stop camera on pause
-            setContentView(R.layout.title);
         }
         on = false;
     }
@@ -152,14 +163,19 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
             Customer newEntry = new Customer(name.getText().toString(), Integer.parseInt(size.getText().toString()));
             DatabaseReference pushedRef = mDatabase.push();
             newEntry.setKey(pushedRef.getKey());
+            customer_key = newEntry.key;
             pushedRef.setValue(newEntry);
             Toast.makeText(getApplicationContext(), "Successfully added to the restaurant's Queue!", Toast.LENGTH_LONG).show();
             popupWindow.dismiss();
+            setContentView(R.layout.title);
+            qr = (Button) findViewById(R.id.customer);
+            customer = (Button) findViewById(R.id.customer_view);
+            qr.setVisibility(View.GONE);
+            customer.setVisibility(View.VISIBLE);
             Intent intent = new Intent(this, CustomerActivity.class);
             intent.putExtra("id", database_id);
             intent.putExtra("key", newEntry.key);
             startActivity(intent);
-            this.finish();
         }
     }
 

@@ -41,7 +41,7 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".CustomerActivity"></activity>
+        <activity android:name=".CustomerActivity" android:launchMode="singleTask"/>
     </application>
 
 </manifest>
