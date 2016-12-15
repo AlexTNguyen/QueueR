@@ -118,6 +118,9 @@ public class CustomerActivity extends AppCompatActivity {
                 }
                 if (current.status != 0) {
                     Toast.makeText(getApplicationContext(), "Hi " + current.name + ", you are off the queue!", Toast.LENGTH_LONG).show();
+                    SharedPreferences.Editor editor = getSharedPreferences("customerActivity", MODE_PRIVATE).edit();
+                    editor.putBoolean("open", false);
+                    editor.apply();
                     CustomerActivity.this.finish();
                 }
             }
