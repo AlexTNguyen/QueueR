@@ -1,0 +1,23 @@
+<tabs>
+    <tab
+        id="@+id/tab_qr"
+        icon="@drawable/ic_code"
+        title="QR Code"
+        barColorWhenSelected="@color/colorPrimary"
+        inActiveColor="@color/white"
+        activeColor="@color/white"/>
+    <tab
+        id="@+id/tab_add"
+        icon="@drawable/ic_add"
+        title="Add Entry"
+        barColorWhenSelected="@color/colorPrimary"
+        inActiveColor="@color/white"
+        activeColor="@color/white" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_profile"
+        title="Profile"
+        barColorWhenSelected="@color/colorPrimary"
+        inActiveColor="@color/white"
+        activeColor="@color/white" />
+</tabs>

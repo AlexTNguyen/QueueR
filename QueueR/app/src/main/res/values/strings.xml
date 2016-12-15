@@ -36,12 +36,14 @@
     <string name="title_activity_entry_list">EntryList</string>
     <string name="header_name">Name</string>
     <string name="header_party_size">Party Size</string>
+    <string name="header_size">Size</string>
     <string name="header_wait_time">Wait Time</string>
     <string name="add_entry">Add Entry</string>
     <string name="customer">CUSTOMER</string>
     <string name="restaurant">RESTAURANT</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
+    <string name="delete">DELETE</string>
     <string-array name="status_array">
         <item>Waiting</item>
         <item>Seated</item>

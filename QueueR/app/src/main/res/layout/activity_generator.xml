@@ -58,6 +58,8 @@
         android:id="@+id/save_btn"
         android:onClick="popup_confirm"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>
