@@ -26,8 +26,8 @@
                 android:id="@+id/customer"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorAccent"
-                android:textColor="@color/white"
-                android:onClick="customerView"/>
+                android:textColor="@color/colorPrimary"
+                android:onClick="scanQR"/>
 
             <Button
                 android:layout_width="120dp"
@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:background="@color/colorAccent"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:onClick="login"/>
         </LinearLayout>
 </LinearLayout>
