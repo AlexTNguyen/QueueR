@@ -14,19 +14,28 @@
         android:layout_gravity="center">
 
         <TextView
+            android:layout_margin="10pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Restaurant Name"
+            android:layout_gravity="center_horizontal"
             android:textSize="13pt"
             android:id="@+id/restaurant_info" />
 
         <TextView
-            android:layout_marginTop="15pt"
+            android:layout_margin="10pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Your position"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="13pt"
+            android:id="@+id/name_info" />
+
+        <TextView
+            android:layout_margin="10pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:textSize="13pt"
             android:id="@+id/customer_info" />

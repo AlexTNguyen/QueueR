@@ -45,19 +45,14 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
-    private final CustomerAdapter adapter = new CustomerAdapter(this, new ArrayList<Customer>());
     private String database_id;
     private DatabaseReference mDatabase;
-    private DatabaseReference restaurant;
-    private String restaurant_name = "default";
-    private Customer current = null;
     private ZXingScannerView mScannerView;
     private View popupView;
     private PopupWindow popupWindow;
     private boolean on = false;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 999;
     private View tempview;
-    private int position = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,10 +167,12 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         // make sure pressing the "back" button when in scanner view doesn't go back to title page
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            if (mScannerView.isShown()) {
-                mScannerView.stopCamera();
-                setContentView(R.layout.title);
-                return true;
+            if (mScannerView != null) {
+                if (mScannerView.isShown()) {
+                    mScannerView.stopCamera();
+                    setContentView(R.layout.title);
+                    return true;
+                }
             }
         }
         return super.onKeyDown(keyCode, event);

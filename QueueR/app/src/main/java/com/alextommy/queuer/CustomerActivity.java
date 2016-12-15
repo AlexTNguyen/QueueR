@@ -37,20 +37,23 @@ public class CustomerActivity extends AppCompatActivity{
     private String database_id;
     private DatabaseReference mDatabase;
     private DatabaseReference restaurant;
-    private String restaurant_name = "default";
-    private String key = null;
+    private String restaurant_name = "N/A";
+    private String customer_key = null;
     private View popupView;
     private PopupWindow popupWindow;
-    private int position = 99;
+    private int position = 0;
+    private Customer current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-
+        final TextView r_name = (TextView) findViewById(R.id.restaurant_info);
+        final TextView c_pos = (TextView) findViewById(R.id.customer_info);
+        final TextView c_name = (TextView) findViewById(R.id.name_info);
         Intent intent = getIntent();
         database_id = intent.getStringExtra("id");
-        key = intent.getStringExtra("key");
+        customer_key = intent.getStringExtra("key");
 
         // get database of scanned restaurant
         mDatabase = FirebaseDatabase.getInstance().getReference().child(database_id).child("Entries");
@@ -60,6 +63,9 @@ public class CustomerActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 restaurant_name = snapshot.getValue(String.class);
+                // set restaurant name
+                String name = "Restaurant: " + restaurant_name;
+                r_name.setText(name);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -70,6 +76,7 @@ public class CustomerActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 adapter.clear();
+                position = 0;
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Customer entry = child.getValue(Customer.class);
                     adapter.insert(entry);
@@ -77,22 +84,24 @@ public class CustomerActivity extends AppCompatActivity{
                 adapter.sort();
                 for (int i = 0; i < adapter.getCount(); i++) {
                     Customer entry = (Customer) adapter.getItem(i);
-                    if (entry.key.equals(key)) {
-                        position = i;
+                    if (entry.status == 0) {
+                        position++;
+                    }
+                    if (entry.key.equals(customer_key)) {
+                        current = entry;
                         break;
                     }
                 }
+                // set customer info
+                String name = "Hi " + current.name + "!";
+                String customer = "Your are #" + String.valueOf(position) + " on the queue";
+                c_name.setText(name);
+                c_pos.setText(customer);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        // set restaurant name
-        TextView r_name = (TextView) findViewById(R.id.restaurant_info);
-        TextView c_pos = (TextView) findViewById(R.id.customer_info);
-        r_name.setText(restaurant_name);
-        c_pos.setText(String.valueOf(position));
     }
 
     public void quitCustomer(View view) {
@@ -109,5 +118,9 @@ public class CustomerActivity extends AppCompatActivity{
         popupWindow.dismiss();
         this.finish();
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
