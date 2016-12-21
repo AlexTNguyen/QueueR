@@ -81,7 +81,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 restaurant_name = snapshot.getValue(String.class);
                 // set restaurant name
-                String name = "Restaurant: " + restaurant_name;
+                String name = restaurant_name;
                 r_name.setText(name);
             }
 

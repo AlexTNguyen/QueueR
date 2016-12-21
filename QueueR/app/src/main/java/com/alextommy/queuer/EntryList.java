@@ -3,20 +3,16 @@ package com.alextommy.queuer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +21,6 @@ import com.google.firebase.database.*;
 import com.roughike.bottombar.*;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class EntryList extends AppCompatActivity {
 
@@ -47,7 +41,6 @@ public class EntryList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getActionBar().hide();
         Intent intent = getIntent();
         listView = (ListView) findViewById(R.id.listview);
         auth = FirebaseAuth.getInstance();
@@ -67,6 +60,7 @@ public class EntryList extends AppCompatActivity {
                         profile_page();
                     }
                 }
+                selected++;
             }
         });
 
@@ -161,7 +155,6 @@ public class EntryList extends AppCompatActivity {
 
     // pop up window after clicking on list
     private void editPopup() {
-        //name.setText();
         LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup_edit,

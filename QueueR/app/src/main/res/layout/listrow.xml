@@ -5,29 +5,30 @@
     android:orientation="horizontal" >
 
     <TextView android:id="@+id/column1"
-        android:textSize="8pt"
+        android:textSize="14sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Name"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:layout_weight="0.71"
+        android:layout_weight="0.86"
         android:layout_gravity="left"
         />
 
     <TextView android:id="@+id/column2"
-        android:textSize="8pt"
+        android:textSize="14sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Size"
+        android:textAlignment="center"
         android:layout_gravity="left"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:layout_weight="0.30" />
+        android:layout_weight="0.81" />
 
     <TextView android:id="@+id/column3"
-        android:textSize="8pt"
+        android:textSize="14sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"

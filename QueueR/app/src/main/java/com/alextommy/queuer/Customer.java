@@ -54,12 +54,9 @@ public class Customer {
         return key;
     }
 
-
-
     public int getSize() {
         return size;
     }
-
 
     public Date getDate() {
         return checkin;
@@ -69,15 +66,12 @@ public class Customer {
         this.name = name;
     }
 
-
     public void setSize(int size) {
         this.size = size;
     }
 
-
     public void setDate(Date date) {
         this.checkin = date;
     }
-
 
 }

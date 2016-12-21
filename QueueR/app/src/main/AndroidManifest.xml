@@ -28,7 +28,7 @@
         <activity
             android:name=".EntryList"
             android:logo="@drawable/title"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"/>
 
         <meta-data
