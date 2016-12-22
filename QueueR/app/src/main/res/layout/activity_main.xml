@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#25A7E3"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:theme="@style/AppTheme.NoActionBar">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            android:padding="5dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <!-- Third header line and column headings -->
     <LinearLayout
@@ -19,24 +38,29 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingBottom="5dp"
-            android:layout_weight="0.71"
+            android:layout_weight="0.86"
             android:layout_gravity="left"
+            android:text="@string/header_name"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
         <!--  Column 2 header -->
         <TextView android:id="@+id/column_header2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_weight="0.30"
+            android:textAlignment="center"
+            android:layout_weight="0.81"
             android:paddingTop="5dp"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:paddingBottom="5dp"
+            android:text="@string/header_size"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
 
         <TextView android:id="@+id/column_header3"
@@ -44,11 +68,13 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:paddingTop="5dp"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:paddingBottom="5dp"
             android:layout_gravity="left"
             android:layout_weight="1"
+            android:text="@string/header_wait_time"
             android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
     </LinearLayout>
 
@@ -58,34 +84,12 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/add_entry"
-        android:id="@+id/button"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorAccent"
-        android:onClick="showPopup"/>
-
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/QRcode"
-        android:id="@+id/new_qr"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorAccent"
-        android:onClick="generateQR"/>
-
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/Profile"
-        android:layout_marginTop="5dp"
-        android:id="@+id/profile_btn"
-        android:background="@color/colorAccent"
-        android:layout_gravity="center_horizontal"
-        android:onClick="profile_page"/>
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        app:bb_badgeBackgroundColor="@color/colorPrimary"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
 </LinearLayout>

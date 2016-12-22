@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5pt"
+    android:background="@color/colorPopup"
+    android:id="@+id/popup_newscan">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15pt"
+        android:text="Leave and scan a new QR code?"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YES"
+        android:id="@+id/yes_button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="scanQR"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimary"/>
+
+</LinearLayout>

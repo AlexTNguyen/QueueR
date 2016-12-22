@@ -25,6 +25,15 @@ public class Customer {
         key = "";
     }
 
+    public Customer(String name, int size, String key) {
+        this.name = name;
+        this.size = size;
+        checkin = new Date();
+        estimate = null;
+        status = 0;
+        this.key = key;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -45,12 +54,9 @@ public class Customer {
         return key;
     }
 
-
-
     public int getSize() {
         return size;
     }
-
 
     public Date getDate() {
         return checkin;
@@ -60,15 +66,12 @@ public class Customer {
         this.name = name;
     }
 
-
     public void setSize(int size) {
         this.size = size;
     }
 
-
     public void setDate(Date date) {
         this.checkin = date;
     }
-
 
 }

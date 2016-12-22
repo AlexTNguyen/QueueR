@@ -3,7 +3,8 @@
     android:layout_width="@dimen/popup_window_width"
     android:layout_height="@dimen/popup_window_height"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPopup"
+    android:padding="5pt"
     android:id="@+id/popup_customer">
 
     <TextView
@@ -38,7 +39,9 @@
         android:text="@string/add"
         android:id="@+id/button2_customer"
         android:layout_gravity="center_horizontal"
-        android:onClick="newCustomer"/>
+        android:onClick="newCustomer"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimary"/>
 
 
 </LinearLayout>

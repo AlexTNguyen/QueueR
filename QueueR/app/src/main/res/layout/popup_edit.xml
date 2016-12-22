@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPopup"
+    android:padding="5pt"
     android:id="@+id/popup_edit">
 
     <TextView
@@ -46,10 +47,24 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit"
+        android:text="@string/ok"
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal"
-        android:onClick="editEntry"/>
+        android:onClick="editEntry"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:id="@+id/deleteButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="deleteEntry"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#e50000"
+        android:textColor="@color/white"/>
 
 
 </LinearLayout>

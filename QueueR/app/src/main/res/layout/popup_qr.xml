@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="5pt"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPopup"
     android:id="@+id/popup_qr">
 
     <TextView
@@ -14,11 +15,14 @@
         android:text="Save QR code to gallery?"/>
 
     <Button
+        android:layout_marginTop="15pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="YES"
         android:id="@+id/yes_button"
         android:layout_gravity="center_horizontal"
-        android:onClick="saveImage"/>
+        android:onClick="saveImage"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimary"/>
 
 </LinearLayout>

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    android:background="@color/colorPrimary"
+    tools:context=".ProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -77,9 +78,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:text="@string/btn_change"
-            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <Button
@@ -88,9 +89,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:text="@string/btn_change"
-            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <Button
@@ -99,9 +100,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:text="@string/btn_send"
-            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <ProgressBar
@@ -111,22 +112,13 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/remove"
-            style="?android:textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/btn_remove"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/change_email_button"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:text="@string/change_email"
             android:textStyle="bold" />
 
@@ -136,6 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:text="@string/change_password"
             android:textStyle="bold" />
 
@@ -144,17 +138,10 @@
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="16dp"
             android:text="@string/send_password_reset_email"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/remove_user_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/remove_user"
             android:textStyle="bold" />
 
         <Button
@@ -163,9 +150,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPopup"
             android:text="@string/btn_sign_out"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
     </LinearLayout>

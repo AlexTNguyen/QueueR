@@ -20,7 +20,6 @@ public class CustomerAdapter extends BaseAdapter {
     private final Activity activity;
     private final List<Customer> list;
 
-
     public CustomerAdapter(Activity activity, List<Customer> list) {
         super();
         this.activity = activity;
@@ -74,7 +73,6 @@ public class CustomerAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -100,11 +98,10 @@ public class CustomerAdapter extends BaseAdapter {
             col3.setBackgroundColor(Color.parseColor("#ccffcc"));
         }
         else if(list.get(position).getStatus() == 2) {
-            col1.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            col2.setBackgroundColor(Color.parseColor("#f2f2f2"));
-            col3.setBackgroundColor(Color.parseColor("#f2f2f2"));
+            col1.setBackgroundColor(Color.parseColor("#bdbdbd"));
+            col2.setBackgroundColor(Color.parseColor("#bdbdbd"));
+            col3.setBackgroundColor(Color.parseColor("#bdbdbd"));
         }
-
 
         SimpleDateFormat format = new SimpleDateFormat("hh:mm a, MMM dd");
         String date = format.format(list.get(position).getDate());
