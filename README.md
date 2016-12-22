@@ -1,4 +1,4 @@
-<center><img src="queuer/app/src/main/res/drawable/logo.png" /></center>
+<center><img src="QueueR/app/src/main/res/drawable/logo.png" /></center>
 
 # QueueR
 
